@@ -14,7 +14,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            HabitScreen("Il mio Progetto StreaKing")
+            // Main application screen
+            HabitScreen("StreaKing Project")
         }
     }
 }
@@ -22,6 +23,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun HabitScreen(name: String) {
     var streak by remember { mutableStateOf(0) }
+    
     Column(
         modifier = Modifier.fillMaxSize().padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -29,10 +31,14 @@ fun HabitScreen(name: String) {
     ) {
         Text(text = name, style = MaterialTheme.typography.headlineMedium)
         Spacer(modifier = Modifier.height(20.dp))
-        Text(text = "🔥 $streak Giorni", style = MaterialTheme.typography.displayLarge)
+        
+        // Visual streak counter
+        Text(text = "🔥 $streak Days", style = MaterialTheme.typography.displayLarge)
         Spacer(modifier = Modifier.height(20.dp))
+        
+        // Completion button
         Button(onClick = { streak = StreakManager.updateStreak(streak) }) {
-            Text("Ho completato l'abitudine!")
+            Text("I completed my habit!")
         }
     }
 }
